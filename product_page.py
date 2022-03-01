@@ -50,3 +50,7 @@ class ProductPage(BasePage):
     def shouldnt_be_success_message(self):
         assert self.is_not_element_presented(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented before product added to cart"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE),\
+            "Success message doesnt disappear"
