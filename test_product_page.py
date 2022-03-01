@@ -21,20 +21,26 @@ def test_find_bug_promo_action(browser, parameter):
     product_page.should_be_added_product_to_cart()
 
 
-def test_success_message_not_presented_before_adding_product_to_cart(browser):
+@pytest.mark.xfail
+def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
+    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_to_cart()
+    product_page.shouldnt_be_success_message()
+
+
+def test_guest_cant_see_success_message(browser):
     link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.shouldnt_be_success_message()
-    product_page.add_to_cart()
-    product_page.should_be_added_product_to_cart()
 
 
-@pytest.mark.xfail(reason="only for testing method")
-def test_success_message_should_disappear(browser):
+@pytest.mark.xfail
+def test_message_disappeared_after_adding_product_to_basket(browser):
     link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
     product_page = ProductPage(browser, link)
     product_page.open()
     product_page.add_to_cart()
-    product_page.should_be_added_product_to_cart()
-    product_page.is_disappeared()
+    product_page.should_disappear_success_message()
