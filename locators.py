@@ -18,4 +18,4 @@ class ProductPageLocators:
     #товар добавлен в корзину
     #корзина удовлетворяет Shipping Offer
     #стоимость корзины составляет ...
-    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
