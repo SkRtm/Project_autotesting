@@ -28,3 +28,13 @@ def test_success_message_not_presented_before_adding_product_to_cart(browser):
     product_page.shouldnt_be_success_message()
     product_page.add_to_cart()
     product_page.should_be_added_product_to_cart()
+
+
+@pytest.mark.xfail(reason="only for testing method")
+def test_success_message_should_disappear(browser):
+    link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.add_to_cart()
+    product_page.should_be_added_product_to_cart()
+    product_page.is_disappeared()
