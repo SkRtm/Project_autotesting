@@ -14,3 +14,8 @@ class ProductPageLocators:
     NAME_OF_PRODUCT = (By.CSS_SELECTOR, 'div.col-sm-6.product_main > h1')
     TOTAL_PRICE_OF_CART = (By.XPATH, "//*[@id='messages']/div[3]/div/p[1]/strong")
     PRICE_OF_PRODUCT = (By.CSS_SELECTOR, ".col-sm-6.product_main > p.price_color")
+    #за success_message принят блок из трех сообщений:
+    #товар добавлен в корзину
+    #корзина удовлетворяет Shipping Offer
+    #стоимость корзины составляет ...
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages")
