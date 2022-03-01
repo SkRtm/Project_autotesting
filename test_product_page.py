@@ -1,7 +1,6 @@
 from .product_page import ProductPage
 import pytest
 
-numbers = [i for i in range(10)] #generates numbers from 0 to 9, which are in link after promo=offer
 
 def test_guest_should_add_product_to_cart_and_solve_quiz(browser):
     
@@ -12,7 +11,7 @@ def test_guest_should_add_product_to_cart_and_solve_quiz(browser):
     product_page.solve_quiz_and_get_code()
     product_page.should_be_added_product_to_cart()
 
-@pytest.mark.parametrize('parameter', numbers)
+@pytest.mark.parametrize('parameter', [n if n != 7 else pytest.param(n, marks = pytest.mark.xfail) for n in range(10)])
 def test_find_bug_promo_action(browser, parameter):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{parameter}"
     product_page = ProductPage(browser, link)
