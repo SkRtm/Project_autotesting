@@ -48,7 +48,7 @@ class ProductPage(BasePage):
         self.should_be_the_same_price_of_cart_and_product()
 
     def shouldnt_be_success_message(self):
-        assert self.is_not_element_presented(*ProductPageLocators.SUCCESS_MESSAGE), \
+        assert self.is_not_element_presented(*ProductPageLocators.NAME_OF_PRODUCT_ADDED_TO_CART), \
             "Success message is presented before product added to cart"
 
     def should_disappear_success_message(self):
