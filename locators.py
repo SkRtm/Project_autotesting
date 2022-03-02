@@ -14,8 +14,15 @@ class ProductPageLocators:
     NAME_OF_PRODUCT = (By.CSS_SELECTOR, 'div.col-sm-6.product_main > h1')
     TOTAL_PRICE_OF_CART = (By.XPATH, "//*[@id='messages']/div[3]/div/p[1]/strong")
     PRICE_OF_PRODUCT = (By.CSS_SELECTOR, ".col-sm-6.product_main > p.price_color")
-    #за success_message принят блок из трех сообщений:
-    #товар добавлен в корзину
-    #корзина удовлетворяет Shipping Offer
-    #стоимость корзины составляет ...
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
+
+
+class BasePageLocators:
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_invalid")
+    CART_LINK = (By.CSS_SELECTOR, ".btn-group > a")
+
+
+class BasketPageLocators:
+    EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, "p > a")
+    PRODUCTS_IN_CART = (By.CSS_SELECTOR, ".col-sm-6.h3")
