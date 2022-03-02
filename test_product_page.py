@@ -1,6 +1,31 @@
 from .product_page import ProductPage
 from .basket_page import BasketPage
+from .login_page import LoginPage
 import pytest
+import time
+
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope = "function", autouse=True)
+    def setup(self, browser):
+        email = str(time.time()) + "@fakemail.org"
+        password = str(time.time())
+        link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+        login_page = LoginPage(browser, link)
+        login_page.open()
+        login_page.register_new_user(email, password)
+        login_page.should_be_authorized_user()
+    def test_user_cant_see_success_message(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.shouldnt_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.add_to_cart()
+        product_page.should_be_added_product_to_cart()
 
 
 def test_guest_should_add_product_to_cart_and_solve_quiz(browser):
