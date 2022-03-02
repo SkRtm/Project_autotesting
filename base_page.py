@@ -53,3 +53,7 @@ class BasePage:
 
     def go_to_cart(self):
         self.browser.find_element(*BasePageLocators.CART_LINK).click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.ICON_USER), \
+            "You are not authorized"
