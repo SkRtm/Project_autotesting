@@ -1,4 +1,3 @@
-from unittest.mock import Base
 from .base_page import BasePage
 from .locators import BasketPageLocators
 

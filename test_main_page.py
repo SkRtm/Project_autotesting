@@ -1,6 +1,6 @@
-from .base_page import BasePage
-from .login_page import LoginPage
-from .basket_page import BasketPage
+from .pages.base_page import BasePage
+from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 import pytest
 
 @pytest.mark.login_guest
