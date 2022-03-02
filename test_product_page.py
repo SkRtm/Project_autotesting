@@ -1,4 +1,5 @@
 from .product_page import ProductPage
+from .basket_page import BasketPage
 import pytest
 
 
@@ -44,3 +45,13 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     product_page.open()
     product_page.add_to_cart()
     product_page.should_disappear_success_message()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.go_to_cart()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.shouldnt_be_products_in_basket()
+    basket_page.should_be_empty_basket()
