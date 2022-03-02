@@ -14,12 +14,14 @@ class TestUserAddToBasketFromProductPage:
         login_page.open()
         login_page.register_new_user(email, password)
         login_page.should_be_authorized_user()
+
     def test_user_cant_see_success_message(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
         product_page = ProductPage(browser, link)
         product_page.open()
         product_page.shouldnt_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/'
         product_page = ProductPage(browser, link)
@@ -28,7 +30,8 @@ class TestUserAddToBasketFromProductPage:
         product_page.should_be_added_product_to_cart()
 
 
-def test_guest_should_add_product_to_cart_and_solve_quiz(browser):
+@pytest.mark.need_review
+def test_guest_can_add_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear"
     product_page = ProductPage(browser, link)
     product_page.open()
@@ -72,6 +75,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     product_page.should_disappear_success_message()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
     product_page = ProductPage(browser, link)
@@ -80,3 +84,12 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.shouldnt_be_products_in_basket()
     basket_page.should_be_empty_basket()
+
+
+@pytest.mark.need_review
+def test_guest_can_go_to_login_page_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
+    product_page = ProductPage(browser, link)
+    product_page.open()
+    product_page.should_be_login_link()
+    product_page.go_to_login_page()
